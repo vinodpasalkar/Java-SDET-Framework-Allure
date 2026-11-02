@@ -1,0 +1,7 @@
+{
+  "_description": "JSON does not support comments; this field explains the test data.",
+  "validUser": {
+    "username": "tomsmith",
+    "password": "SuperSecretPassword!"
+  }
+}

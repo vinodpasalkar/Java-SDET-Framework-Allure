@@ -1,0 +1,16 @@
+{
+  "project": "NageshG Java SDET Framework",
+  "version": "1.0.0",
+  "contents": [
+    "Java 17 and Maven",
+    "Selenium and Cucumber",
+    "Page Object Model and ThreadLocal WebDriver",
+    "REST Assured and WireMock API test",
+    "Java coding exercises",
+    "Optional AI API example",
+    "React/Vite demo",
+    "Jenkins and GitHub Actions",
+    "Architecture, interview, AI and SQL/JDBC notes"
+  ],
+  "note": "JSON does not support comments."
+}

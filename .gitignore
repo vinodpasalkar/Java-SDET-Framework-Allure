@@ -1,0 +1,21 @@
+# Maven build output.
+target/
+# Node package installation.
+node_modules/
+# Frontend build output.
+dist/
+# IDE metadata.
+.idea/
+.vscode/
+*.iml
+# Local secrets and environment configuration.
+.env
+.env.*
+# OS metadata.
+.DS_Store
+Thumbs.db
+
+# Allure reporting output.
+allure-results/
+allure-report/
+

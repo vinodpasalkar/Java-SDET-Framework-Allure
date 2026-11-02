@@ -1,0 +1,39 @@
+# Names the workflow.
+name: Java SDET CI
+# Runs for pushes and pull requests.
+on: [push, pull_request]
+# Defines the test job.
+jobs:
+  test:
+    # Uses a hosted Ubuntu runner.
+    runs-on: ubuntu-latest
+    # Lists steps in execution order.
+    steps:
+      # Checks out the repository.
+      - uses: actions/checkout@v4
+      # Installs Java 17 and caches Maven dependencies.
+      - uses: actions/setup-java@v4
+        with:
+          # Selects Java distribution.
+          distribution: temurin
+          # Selects Java version.
+          java-version: '17'
+          # Enables Maven cache.
+          cache: maven
+      # Executes the Maven test lifecycle.
+      - name: Run Maven tests
+        run: mvn --batch-mode clean test
+
+      # Preserves test reports and Allure result files even when tests fail.
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          # Names the downloadable artifact for this workflow run.
+          name: test-reports-and-allure-results
+          # Uploads generated report folders when they exist.
+          path: |
+            target/allure-results/
+            target/cucumber-reports/
+          # Does not fail the workflow if no report folder was produced.
+          if-no-files-found: warn

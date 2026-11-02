@@ -1,0 +1,12 @@
+/* Sets page typography and background. */
+body { font-family: Arial, sans-serif; margin: 0; padding: 2rem; background: #f4f6f8; }
+/* Styles the login panel. */
+.panel { max-width: 420px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 12px; }
+/* Places form labels on separate lines. */
+label { display: block; margin-top: 1rem; }
+/* Makes form inputs fill the panel. */
+input { box-sizing: border-box; width: 100%; padding: .7rem; margin-top: .35rem; }
+/* Adds spacing to the submit button. */
+button { margin-top: 1.2rem; padding: .7rem 1rem; cursor: pointer; }
+/* Reserves space for accessible status text. */
+[role="status"] { min-height: 1.5rem; }
