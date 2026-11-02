@@ -9,11 +9,10 @@ import org.openqa.selenium.WebDriver;
 
 
 public class Hooks { // Defines scenario setup and cleanup.
-    private WebDriver driver;
     @Before public void before() { DriverFactory.createDriver(); } // Starts a fresh browser before each scenario.
     @After(order = 10000) public void after(Scenario scenario) { // Runs cleanup after lower-order hooks and receives scenario details.
         if (scenario.isFailed() && DriverFactory.hasDriver()) { // Captures evidence only when a scenario failed and a browser exists.
-            byte[] screenshot = ((TakesScreenshot) driver)
+            byte[] screenshot = ((TakesScreenshot) DriverFactory.getDriver())
                     .getScreenshotAs(OutputType.BYTES); // Takes a screenshot as bytes.
             scenario.attach(screenshot, "image/png", "Failure screenshot"); // Adds the screenshot to Cucumber and the Allure result.
         }
