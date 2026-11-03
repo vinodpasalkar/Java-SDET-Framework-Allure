@@ -18,4 +18,6 @@ Thumbs.db
 # Allure reporting output.
 allure-results/
 allure-report/
+.allure/
+
 

@@ -6,8 +6,22 @@ import io.cucumber.java.After; // Imports after-scenario annotation.
 import io.cucumber.java.Scenario; // Provides scenario status and attachment support.
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class Hooks { // Defines scenario setup and cleanup.
+    static { // Automatically generates the Allure HTML report when the test JVM completes.
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                String allureCmd = "allure";
+                if (new File("/opt/homebrew/bin/allure").exists()) allureCmd = "/opt/homebrew/bin/allure";
+                else if (new File("/usr/local/bin/allure").exists()) allureCmd = "/usr/local/bin/allure";
+                Process process = new ProcessBuilder(allureCmd, "generate", "target/allure-results", "--clean", "-o", "target/allure-report").start();
+                process.waitFor(30, TimeUnit.SECONDS);
+            } catch (Exception ignored) { } // Silently ignores if Allure CLI is not in system path.
+        }));
+    }
+
     @Before("not @api") public void beforeUI() { DriverFactory.createDriver(); } // Starts a fresh browser before each UI scenario.
     @Before("@api") public void beforeAPI() { MockServerManager.start(); } // Starts the mock API server before API scenarios.
 

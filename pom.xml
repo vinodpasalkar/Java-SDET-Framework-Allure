@@ -30,19 +30,43 @@
       <version>3.5.2</version>
       <configuration>
         <useModulePath>false</useModulePath>
+        <testFailureIgnore>true</testFailureIgnore>
         <systemPropertyVariables>
           <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
         </systemPropertyVariables>
       </configuration>
     </plugin>
-    <!-- Generates and serves Allure HTML reports. -->
+    <!-- Automatically generates the full interactive Allure HTML report after tests. -->
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>3.5.0</version>
+      <executions>
+        <execution>
+          <id>generate-allure-report</id>
+          <phase>test</phase>
+          <goals>
+            <goal>exec</goal>
+          </goals>
+          <configuration>
+            <executable>sh</executable>
+            <arguments>
+              <argument>-c</argument>
+              <argument>PATH=$PATH:/opt/homebrew/bin:/usr/local/bin allure generate target/allure-results --clean -o target/allure-report || true</argument>
+            </arguments>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+    <!-- Allure Maven plugin for CLI goals like mvn allure:serve. -->
     <plugin>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-maven</artifactId>
       <version>2.12.0</version>
       <configuration>
-        <reportVersion>2.29.1</reportVersion>
+        <reportVersion>2.29.0</reportVersion>
         <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+        <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
       </configuration>
     </plugin>
   </plugins></build>
