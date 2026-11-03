@@ -8,17 +8,19 @@ Interview-preparation starter covering Java 17, Selenium, Cucumber, REST Assured
 - Chrome for the browser scenario
 
 ## Run
-- Java tests: `mvn clean test`
+- Run all tests: `mvn clean test`
+- Run only API Cucumber scenarios: `mvn test -Dcucumber.filter.tags="@api"`
+- Run only UI Cucumber scenarios: `mvn test -Dcucumber.filter.tags="@ui"`
 - Allure results are written to `target/allure-results`.
-- Generate and open the interactive report after tests: `allure serve target/allure-results` (requires the Allure command-line tool; see `docs/ALLURE_REPORTING.md`).
+- Generate and open the interactive report after tests: `allure serve target/allure-results` or `mvn allure:serve`
 - Generate a static report folder: `allure generate target/allure-results --clean -o target/allure-report`
 - React demo: `cd react-demo && npm install && npm run dev`
 
-The UI scenario uses the public demo site `the-internet.herokuapp.com` and needs internet access. The API test uses a local WireMock server.
+The UI scenario uses the public demo site `the-internet.herokuapp.com` and needs internet access. The API tests use an embedded WireMock mock server.
 
 ## Contents
-- `src/test/java`: framework classes, UI steps, API test, coding examples and AI API sample.
-- `src/test/resources`: Cucumber feature, config and sample data.
+- `src/test/java`: framework classes, UI & API Cucumber steps, WireMock manager, API test, coding examples and AI API sample.
+- `src/test/resources`: Cucumber features (`login.feature`, `users_api.feature`), config and sample data.
 - `react-demo`: React login page.
 - `docs`: architecture, interview, AI testing and SQL/JDBC notes.
 - `Jenkinsfile`, `.github/workflows/ci.yml`: CI examples.

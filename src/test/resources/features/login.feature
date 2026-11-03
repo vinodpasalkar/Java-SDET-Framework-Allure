@@ -1,3 +1,4 @@
+@ui
 Feature: Login
   # Verifies a successful sign-in journey.
   Scenario: Successful login
