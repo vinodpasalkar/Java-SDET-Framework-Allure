@@ -34,7 +34,4 @@ public class Hooks { // Defines scenario setup and cleanup.
         DriverFactory.quitDriver(); // Closes the browser after evidence has been captured.
     }
 
-    @After("@api") public void afterAPI() {
-        MockServerManager.reset(); // Resets mock stubs back to defaults after each API scenario.
-    }
 } // Ends Hooks.

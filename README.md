@@ -9,6 +9,7 @@ Interview-preparation starter covering Java 17, Selenium, Cucumber, REST Assured
 
 ## Run
 - Run all tests: `mvn clean test`
+- Cucumber scenarios run in parallel using four workers.
 - Run only API Cucumber scenarios: `mvn test -Dcucumber.filter.tags="@api"`
 - Run only UI Cucumber scenarios: `mvn test -Dcucumber.filter.tags="@ui"`
 - Allure results are written to `target/allure-results`.
